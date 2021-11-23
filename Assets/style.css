@@ -4,6 +4,13 @@ body {
   line-height: 1;
 }
 
+.col-md-8 {
+  border:#000000;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+}
+
 textarea {
   background: transparent;
   border: none;
