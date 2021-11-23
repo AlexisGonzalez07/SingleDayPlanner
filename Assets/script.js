@@ -24,11 +24,13 @@ function createSchedule() {
     hour.classList = "col hour"
     hour.textContent = hourArray[i]
     // hour.setAttribute('')
-    taskSpace = document.createElement("div")
+    taskSpace = document.createElement("textarea")
     taskSpace.classList = 'col-md-8'
-    taskSpace.setAttribute("data-count", i)
+    taskSpace.setAttribute("data-text", i)
     console.log(taskSpace)
     iconSpace = document.createElement('div')
+    button =document.createElement('button')
+    iconSpace.append(button)
     iconSpace.classList = 'col saveBtn'
 
     console.log(iconSpace)
@@ -38,25 +40,21 @@ function createSchedule() {
     maindiv.append(newRow)
 }}
 
-// const clickHandler = function(event) {
-//   // Convert the `data-count` attribute from a string to an integer.
-//   let newevent = parseInt(event.target.getAttribute('data-count'));
+const clickHandler = function(event) {
+  // Check to see if the element is clicked.
+ if (event.target.matches('button')){
+   if(event.target.parentNode.previousSibling.textContent=""){
+     console.log('empty')
+   } else (event.target.parentNode.previousSibling.textContent!=="")
+    localStorage.setItem(event.target.parentNode.previousSibling.getAttribute("data-text"),JSON.stringify(event.target.parentNode.previousSibling.textContent))
+    console.log("success")
+    console.log(localStorage) 
+  }
+};
 
-//   // Check to see if the element is a button.
-//   if (event.target.matches('button')) {
-//     // Increase our `data-count` attribute by one.
-//     count++;
-    
-//     // Set the newly incremented `count` variable to the `data-count` attribute.
-//     event.target.setAttribute('data-count', count);
+date = moment().format('MMMM Do YYYY, h:mm:ss a');
 
-//     // Update what the button's display to show the correct amount of clicks.
-//     event.target.textContent = `Clicks: ${count}`;
-//   }
-
-// };
-
-// // Add the click handler to the container that holds our buttons.
-// containerEl.addEventListener('click', clickHandler);
+// Add the click handler to the container that holds our buttons.
+maindiv.addEventListener('click', clickHandler);
 
 createSchedule()
