@@ -2,10 +2,13 @@
 const containerEl = document.getElementsByClassName('container');
 const maindiv = document.getElementById('mainstuff')
 console.log(containerEl)
+const timeHolder = document.getElementById('currentDay')
+console.log(timeHolder)
+timeHolder.innerHTML= moment().format('MMMM Do YYYY, h:mm:ss a')
 // Table = document.getElementsByClassName('container')
 hourArray = [
-    "8:00",
-    "9:00",
+    "08:00",
+    "09:00",
     "10:00",
     "11:00",
     "12:00",
@@ -29,8 +32,9 @@ function createSchedule() {
     taskSpace.setAttribute("data-text", i)
     iconSpace = document.createElement('div')
     button =document.createElement('button')
+    button.innerHTML='Save'
     iconSpace.append(button)
-    iconSpace.classList = 'col saveBtn'
+    iconSpace.classList = 'col saveBtn justify-center'
     newRow.append(hour);
     newRow.append(taskSpace);
     newRow.append(iconSpace);
@@ -48,7 +52,6 @@ const clickHandler = function(event) {
 
 const populatePage = function() {
   let arr= document.querySelectorAll(`[data-text]`);
-  console.log(arr)
   for (let i=0; i<arr.length; i++){
     let index = i.toString()
      let keyName = localStorage.getItem(index)
@@ -57,18 +60,19 @@ const populatePage = function() {
   checkDate()
 }
 
-var date = moment().format('MMMM Do YYYY, h:mm:ss a');
+// var date = moment().format('MMMM Do YYYY, h:mm:ss a');
+var date = moment().format('HH:MM')
 console.log(date)
 
 const checkDate = function() {
   let arr= document.querySelectorAll(`[data-hour]`);
-  console.log(arr)
   for (let i=0; i<arr.length; i++){
-    if (arr[i].textContent < date ){
-    arr[i].classList.add('past')
-  } else if (arr[i].textContent == date ){
-     arr[i].classList.add('present')
-  } else {arr[i].classList.add('future')}
+    console.log(arr[i].innerHTML)
+    if (arr[i].innerHTML < date ){
+    arr[i].nextSibling.classList.add('past')
+  } else if (arr[i].innerHTML == date ){
+     arr[i].nextSibling.classList.add('present')
+  } else {arr[i].nextSibling.classList.add('future')}
 }
 }
 
