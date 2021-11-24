@@ -34,7 +34,7 @@ function createSchedule() {
     button =document.createElement('button')
     button.innerHTML='Save'
     iconSpace.append(button)
-    iconSpace.classList = 'col saveBtn justify-center'
+    iconSpace.classList = 'col saveBtn'
     newRow.append(hour);
     newRow.append(taskSpace);
     newRow.append(iconSpace);
